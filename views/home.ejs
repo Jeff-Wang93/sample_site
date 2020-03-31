@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8">
+        <title>User Profile</title>
+        <style>
+            .user-profile {
+                width: 300px;
+                margin: 0 auto;
+                font-family: Tahoma, Geneva, sans-serif;
+            }
+            .user-profile h1 {
+                text-align: center;
+                color: #4d4d4d;
+                font-size: 24px;
+                padding: 20px 0 20px 0;
+            }
+            .user-profile p {
+                text-align: left;
+                color #080808;
+                font-size: 18px;
+                padding: 5px 0 3px 0;
+            }
+            .user-profile input[type="submit"] {
+                width: 50%;
+                padding: 15px;
+                background-color: #535b63;
+                border: 0;
+                box-sizing: border-box;
+                cursor: pointer;
+                font-weight: bold;
+                color: #ffffff;
+            }
+            .center {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 40%;
+            }
+        </style>
+	</head>
+	<body>
+        <div class="user-profile">
+            <img src="<%= query.picture %>" alt="user image here" with="100" height="100" class="center"/>
+            <h1><%= query.name.first %> <%= query.name.last %> </h1>
+            <p><b>Balance:</b> <%= query.balance %></p>
+            <p><b>Email:</b>  <%= query.email %></p>
+            <p><b>Company:</b>  <%= query.company %></p>
+            <p><b>Age:</b>  <%= query.age %></p>
+            <p><b>Phone:</b>  <%= query.phone %></p>
+            <p><b>Address:</b>  <%= query.address %></p>
+
+            <form action="logout" method="GET">
+                <input type="submit" value="Logout" name="logout"/>
+            </form>
+        </div>
+	</body>
+</html>

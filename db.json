@@ -1,0 +1,24 @@
+{
+  "users": 
+  [
+      {
+        "_id": "5410953eb0e0c0ae25608277",
+        "guid": "eab0324c-75ef-49a1-9c49-be2d68f50b96",
+        "isActive": true,
+        "balance": "$3,585.69",
+        "picture": "http://placehold.it/32x32",
+        "age": 30,
+        "eyeColor": "blue",
+        "name": {
+          "first": "Henderson",
+          "last": "Briggs"
+        },
+        "company": "GEEKNET",
+        "email": "test@gmail.com",
+        "salt": "23derd*334",
+        "password": "password1234",
+        "phone": "+1 (936) 451-3590",
+        "address": "121 National Drive, Cotopaxi, Michigan, 8240"
+      }
+  ]
+}
