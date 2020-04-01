@@ -15,6 +15,7 @@ var uuid = require('uuid');
 
 // salt/hash functionality
 var bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 // initilize express framework
 var app = express();
@@ -38,9 +39,6 @@ app.get('/', function(request, response) {
 
 // sign up route
 app.post('/signup', function(request, response) {
-    // create a hash
-    const saltRounds = 10;
-
     // ensure user doesn't already exist
     query = db.get('users').find({email: request.email}).value();
     if(query) {
@@ -72,11 +70,41 @@ app.post('/signup', function(request, response) {
             request.session.loggedin = true;
             query = db.get('users').find({email: req.email}).value();
             request.session.user = query;
-            console.log(query);
             return response.redirect('/home');
         });
     }
 });
+
+// edit route
+// very similar to signup, could make more modular, dont want to violate DRY
+// functionality requires all fields be changed at once
+app.post('/edit', function(request, response) {
+    req = request.body;
+    bcrypt.hash(req.password, saltRounds, function(err, hash) {
+        db.get('users').find({guid: request.session.user.guid}).assign({ 
+            balance: req.balance,
+            picture: req.picture,
+            age: req.age,
+            eyeColor: req.eye,
+            name: {
+                first: req.fname,
+                last: req.lname
+            },
+            company: req.company,
+            email: req.email,
+            phone: req.phone,
+            address: req.address,
+            hash: hash }
+        ).write()
+
+        // login the user and send them to the home page
+        request.session.loggedin = true;
+        query = db.get('users').find({email: req.email}).value();
+        request.session.user = query;
+        return response.redirect('/home');
+    });
+});
+
 
 // deal with authentication, redirect to home page on success
 app.post('/auth', function(request, response) {
@@ -112,7 +140,7 @@ app.post('/auth', function(request, response) {
 // user info page
 app.get('/home', function(request, response) {
     if(request.session.loggedin) {
-        response.render('home', {});
+        response.render('home', query);
     }
     else {
         response.send('Please log in to view this page');

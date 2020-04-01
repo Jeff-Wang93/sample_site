@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Signup Form</title>
+		<style>
+		.login-form {
+			width: 300px;
+			margin: 0 auto;
+			font-family: Tahoma, Geneva, sans-serif;
+		}
+		.login-form h1 {
+			text-align: center;
+			color: #4d4d4d;
+			font-size: 24px;
+			padding: 20px 0 20px 0;
+		}
+		.login-form input[type="password"],
+		.login-form input[type="text"] {
+			width: 100%;
+			padding: 15px;
+			border: 1px solid #dddddd;
+			margin-bottom: 15px;
+			box-sizing:border-box;
+		}
+		.login-form input[type="submit"] {
+			width: 100%;
+			padding: 15px;
+			background-color: #535b63;
+			border: 0;
+			box-sizing: border-box;
+			cursor: pointer;
+			font-weight: bold;
+			color: #ffffff;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="login-form">
+            <img src="/assets/logo.png" alt="logo here" width="300" height="220"/>
+			<form action="edit" method="POST">
+                <label for="balance">Balance</label><br>
+                <input type="text" name="balance" required>
+                <label for="fname">First Name</label><br>
+                <input type="text" name="fname" required>
+                <label for="lname">Last Name</label><br>
+                <input type="text" name="lname" required>
+                <label for="email">Email</label><br>
+                <input type="text" name="email" required>
+                <label for="pword">Password</label><br>
+				<input type="password" name="password" required>
+                <label for="phone">Phone</label><br>
+                <input type="text" name="phone" required>
+                <label for="address">Address</label><br>
+                <input type="text" name="address" required>
+                <label for="company">Company</label><br>
+                <input type="text" name="company" required>
+                <label for="picture">Picture URL</label><br>
+                <input type="text" name="picture" required>
+                <label for="eye">Eye Color</label><br>
+                <input type="text" name="eye" required>
+                <label for="age">Age</label><br>
+                <input type="text" name="age" required>
+                <input type="submit" value="Edit">
+			</form>
+		</div>
+	</body>
+</html>

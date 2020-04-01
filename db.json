@@ -4,7 +4,7 @@
       "guid": "4a5baaf0-8988-4508-b8e7-00234953d3e5",
       "isActive": true,
       "balance": 0,
-      "picture": "testUrl",
+      "picture": "https://loremflickr.com/320/240",
       "age": "43",
       "eyeColor": "green",
       "name": {
