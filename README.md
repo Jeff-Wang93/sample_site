@@ -11,3 +11,5 @@ the steps to get that up and running:
 2. `docker run -p 49160:3000 -d sample-site-app` - Verify this worked correctly
    by doing `docker ps`. You should see the container. 
 3. In your favorite web browser, visit the site at `localhost:49160`.
+
+To run tests, ensure the web app is up and running and then run the command `npm test`. 
