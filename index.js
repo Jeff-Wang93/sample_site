@@ -59,12 +59,10 @@ app.post('/signup', function(request, response) {
                                phone: req.phone,
                                address: req.address }
         ).write()
-        // response.send("Account successfully created")
 
         // login the user and send them to the home page
         request.session.loggedin = true;
         query = db.get('users').find({email: req.email}).value();
-        console.log(query);
         request.session.user = query;
         response.redirect('/home');
     }
