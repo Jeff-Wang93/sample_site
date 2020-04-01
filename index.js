@@ -10,6 +10,9 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 
+// get a uuid from npm-uuid
+var uuid = require('uuid');
+
 // initilize express framework
 var app = express();
 
@@ -25,15 +28,47 @@ app.set('view engine', 'ejs');
 
 // serve static resources
 app.use(express.static(__dirname + '/views'));
-
 // index page
 app.get('/', function(request, response) {
     response.sendFile(path.join(__dirname + '/views/index.html'));
 });
 
 // sign up route
-app.get('/test', function(request, response) {
-    response.send("hello world");
+app.post('/signup', function(request, response) {
+    // ensure user doesn't already exist
+    query = db.get('users').find({email: request.email}).value();
+    if(query) {
+        response.send('User already exists');
+    }
+    
+    else {
+        req = request.body;
+        db.get('users').push({ guid: uuid.v4(),
+                               isActive: true,
+                               balance: 0,
+                               picture: req.picture,
+                               age: req.age,
+                               eyeColor: req.eye,
+                               name: {
+                                   first: req.fname,
+                                   last: req.lname
+                               },
+                               company: req.company,
+                               email: req.email,
+                               password: req.password,
+                               phone: req.phone,
+                               address: req.address }
+        ).write()
+        // response.send("Account successfully created")
+
+        // login the user and send them to the home page
+        request.session.loggedin = true;
+        query = db.get('users').find({email: req.email}).value();
+        console.log(query);
+        request.session.user = query;
+        response.redirect('/home');
+    }
+    response.end()
 });
 
 // deal with authentication, redirect to home page on success

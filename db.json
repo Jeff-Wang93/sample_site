@@ -1,24 +1,40 @@
 {
-  "users": 
-  [
-      {
-        "_id": "5410953eb0e0c0ae25608277",
-        "guid": "eab0324c-75ef-49a1-9c49-be2d68f50b96",
-        "isActive": true,
-        "balance": "$3,585.69",
-        "picture": "http://placehold.it/32x32",
-        "age": 30,
-        "eyeColor": "blue",
-        "name": {
-          "first": "Henderson",
-          "last": "Briggs"
-        },
-        "company": "GEEKNET",
-        "email": "test@gmail.com",
-        "salt": "23derd*334",
-        "password": "password1234",
-        "phone": "+1 (936) 451-3590",
-        "address": "121 National Drive, Cotopaxi, Michigan, 8240"
-      }
+  "users": [
+    {
+      "_id": "5410953eb0e0c0ae25608277",
+      "guid": "eab0324c-75ef-49a1-9c49-be2d68f50b96",
+      "isActive": true,
+      "balance": "$3,585.69",
+      "picture": "http://placehold.it/32x32",
+      "age": 30,
+      "eyeColor": "blue",
+      "name": {
+        "first": "Henderson",
+        "last": "Briggs"
+      },
+      "company": "GEEKNET",
+      "email": "test@gmail.com",
+      "salt": "23derd*334",
+      "password": "password1234",
+      "phone": "+1 (936) 451-3590",
+      "address": "121 National Drive, Cotopaxi, Michigan, 8240"
+    },
+    {
+      "guid": "7e8c81aa-47fa-4b0b-b169-aa417f9fd101",
+      "isActive": true,
+      "balance": 0,
+      "picture": "thispersondoesntexist.com",
+      "age": "21",
+      "eyeColor": "green",
+      "name": {
+        "first": "john",
+        "last": "smith"
+      },
+      "company": "test company",
+      "email": "test@test.com",
+      "password": "password",
+      "phone": "555-555-5555",
+      "address": "123 test ln"
+    }
   ]
 }

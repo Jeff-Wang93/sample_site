@@ -33,6 +33,17 @@
 			font-weight: bold;
 			color: #ffffff;
 		}
+        .login-form input[type="button"] {
+            margin: 5px auto;
+            width: 100%;
+			padding: 15px;
+			background-color: #535b63;
+			border: 0;
+			box-sizing: border-box;
+			cursor: pointer;
+			font-weight: bold;
+			color: #ffffff;
+        }
 		</style>
 	</head>
 	<body>
@@ -45,6 +56,9 @@
 				<input type="password" name="password" required>
                 <input type="submit" value="Login">
 			</form>
+
+            <input type="button" onclick="document.location.href = 'signup.html'" value="New User"/>
+
 		</div>
 	</body>
 </html>
