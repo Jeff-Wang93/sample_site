@@ -1,5 +1,6 @@
 # sample_site
 
+To start the site:
 1. `npm install package.json`
 2. `node index.js`
 3. In your favorite web browser, visit the site at `localhost:3000`
@@ -12,4 +13,5 @@ the steps to get that up and running:
    by doing `docker ps`. You should see the container. 
 3. In your favorite web browser, visit the site at `localhost:49160`.
 
-To run tests, ensure the web app is up and running and then run the command `npm test`. 
+To run tests:
+1. ensure the web app is up and running and then run the command `npm test`. 
