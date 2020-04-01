@@ -8,6 +8,6 @@ I have also included a dockerfile and "docker-ized" the webapp. Here are
 the steps to get that up and running:
 1. `docker build -t sample-site-app .` - Verify this worked correctly by doing
    `docker images`. You should see `sample-site-app` listed.
-2. `docker run -p 49160:3000 -d sample-site-app` - verify this worked correctly
+2. `docker run -p 49160:3000 -d sample-site-app` - Verify this worked correctly
    by doing `docker ps`. You should see the container. 
 3. In your favorite web browser, visit the site at `localhost:49160`.
