@@ -20,11 +20,11 @@
       "address": "121 National Drive, Cotopaxi, Michigan, 8240"
     },
     {
-      "guid": "7e8c81aa-47fa-4b0b-b169-aa417f9fd101",
+      "guid": "4a5baaf0-8988-4508-b8e7-00234953d3e5",
       "isActive": true,
       "balance": 0,
-      "picture": "thispersondoesntexist.com",
-      "age": "21",
+      "picture": "testUrl",
+      "age": "43",
       "eyeColor": "green",
       "name": {
         "first": "john",
@@ -32,9 +32,9 @@
       },
       "company": "test company",
       "email": "test@test.com",
-      "password": "password",
       "phone": "555-555-5555",
-      "address": "123 test ln"
+      "address": "123 test ln",
+      "hash": "$2b$10$JV/en46F1h7yt8LAifRqR.kojxBMDTM.tXQr0QvBuV8oyfWx8tpPe"
     }
   ]
 }

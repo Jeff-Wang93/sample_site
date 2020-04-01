@@ -13,6 +13,9 @@ const path = require('path');
 // get a uuid from npm-uuid
 var uuid = require('uuid');
 
+// salt/hash functionality
+var bcrypt = require('bcrypt');
+
 // initilize express framework
 var app = express();
 
@@ -35,6 +38,9 @@ app.get('/', function(request, response) {
 
 // sign up route
 app.post('/signup', function(request, response) {
+    // create a hash
+    const saltRounds = 10;
+
     // ensure user doesn't already exist
     query = db.get('users').find({email: request.email}).value();
     if(query) {
@@ -43,30 +49,33 @@ app.post('/signup', function(request, response) {
     
     else {
         req = request.body;
-        db.get('users').push({ guid: uuid.v4(),
-                               isActive: true,
-                               balance: 0,
-                               picture: req.picture,
-                               age: req.age,
-                               eyeColor: req.eye,
-                               name: {
-                                   first: req.fname,
-                                   last: req.lname
-                               },
-                               company: req.company,
-                               email: req.email,
-                               password: req.password,
-                               phone: req.phone,
-                               address: req.address }
-        ).write()
+        // create a hash
+        bcrypt.hash(req.password, saltRounds, function(err, hash) {
+            db.get('users').push({ guid: uuid.v4(),
+                                   isActive: true,
+                                   balance: 0,
+                                   picture: req.picture,
+                                   age: req.age,
+                                   eyeColor: req.eye,
+                                   name: {
+                                       first: req.fname,
+                                       last: req.lname
+                                   },
+                                   company: req.company,
+                                   email: req.email,
+                                   phone: req.phone,
+                                   address: req.address,
+                                   hash: hash }
+            ).write()
 
-        // login the user and send them to the home page
-        request.session.loggedin = true;
-        query = db.get('users').find({email: req.email}).value();
-        request.session.user = query;
-        response.redirect('/home');
+            // login the user and send them to the home page
+            request.session.loggedin = true;
+            query = db.get('users').find({email: req.email}).value();
+            request.session.user = query;
+            console.log(query);
+            return response.redirect('/home');
+        });
     }
-    response.end()
 });
 
 // deal with authentication, redirect to home page on success
@@ -76,18 +85,27 @@ app.post('/auth', function(request, response) {
     var pword = request.body.password;
 
     if (uname && pword) {
-        // successful password
-        query = db.get('users').find({email: uname, password: pword}).value()
+        query = db.get('users').find({email: uname}).value();
+
+        // ensure user exists
         if(query) {
-            request.session.loggedin = true;
-            request.session.user = query;
-            response.redirect('/home');
+            // check the plain text password with the db hash
+            bcrypt.compare(pword, query.hash, function(err, result) {
+                if(result) {
+                    request.session.loggedin = true;
+                    request.session.user = query;
+                    response.redirect('/home');
+                }
+
+                else {
+                    // need nicer UI experience rather than plain text on screen. modal?
+                    response.send('Incorrect username or password');
+                }
+            });
         }
         else {
-            // need nicer UI experience rather than plain text on screen. modal?
-            response.send('Incorrect username or password');
+            response.send('User not found');
         }
-        response.end();
     }
 });
 
@@ -99,7 +117,6 @@ app.get('/home', function(request, response) {
     else {
         response.send('Please log in to view this page');
     }
-    response.end();
 });
 
 app.get('/logout', function(request, response) {
@@ -110,7 +127,6 @@ app.get('/logout', function(request, response) {
     else {
         response.send('Not logged in');
     }
-    response.end();
 });
 
 
